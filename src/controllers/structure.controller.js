@@ -1,39 +1,39 @@
 'use strict';
 
-const User = require('../models/employee.model');
+const Structure = require('../models/structure.model');
 
 exports.findAll = function(req, res) {
-  User.findAll(function(err, user) {
+  Structure.findAll(function(err, structure) {
     console.log('controller')
     if (err)
     res.send(err);
-    console.log('res', user);
-    res.send(user);
+    console.log('res', structure);
+    res.send(structure);
   });
 };
 
 
 exports.create = function(req, res) {
-    const newuser = new User(req.body);
+    const newuser = new Structure(req.body);
 
     //handles null error 
    if(req.body.constructor === Object && Object.keys(req.body).length === 0){
         res.status(400).send({ error:true, message: 'Please provide all required field' });
     }else{
-        User.create(newuser, function(err, user) {
+        Structure.create(newstructure, function(err, structure) {
             if (err)
             res.send(err);
-            res.json({error:false,message:"user added successfully!",data:user});
+            res.json({error:false,message:"user added successfully!",data:structure});
         });
     }
 };
 
 
 exports.findById = function(req, res) {
-    User.findById(req.params.id, function(err, user) {
+    Structure.findById(req.params.id, function(err, structure) {
         if (err)
         res.send(err);
-        res.json(user);
+        res.json(structure);
     });
 };
 
@@ -42,7 +42,7 @@ exports.update = function(req, res) {
     if(req.body.constructor === Object && Object.keys(req.body).length === 0){
         res.status(400).send({ error:true, message: 'Please provide all required field' });
     }else{
-        User.update(req.params.id, new User(req.body), function(err, user) {
+        Structure.update(req.params.id, new Structure(req.body), function(err, structure) {
             if (err)
             res.send(err);
             res.json({ error:false, message: 'user successfully updated' });
@@ -53,9 +53,9 @@ exports.update = function(req, res) {
 
 
 exports.delete = function(req, res) {
-  User.delete( req.params.id, function(err, user) {
+  Structure.delete( req.params.id, function(err, structure) {
     if (err)
     res.send(err);
-    res.json({ error:false, message: 'user successfully deleted' });
+    res.json({ error:false, message: 'structure successfully deleted' });
   });
 };

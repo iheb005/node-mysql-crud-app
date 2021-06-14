@@ -16,7 +16,7 @@
     "javascript",
     "es6"
   ],
-  "author": "Rahul Gupta",
+  "author": "El fekih iheb",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",

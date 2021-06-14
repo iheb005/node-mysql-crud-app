@@ -1,16 +1,13 @@
 'user strict';
 var dbConn = require('./../../config/db.config');
 
-//Employee object create
-var User = function(user){
-    this.firstname     = user.firstname;
-    this.lastname      = user.lastname;
-    this.email          = user.email;
-    this.statut          = user.statut;
- 
+//Structure object create
+var Structure = function(structure){
+    this.nom     = user.nom;
+    this.mail      = user.mail;
 };
-User.create = function (newuser, result) {    
-    dbConn.query("INSERT INTO user set ?", newuser, function (err, res) {
+Structure.create = function (newstruct, result) {    
+    dbConn.query("INSERT INTO structure set ?", newstruct, function (err, res) {
         if(err) {
             console.log("error: ", err);
             result(err, null);
@@ -21,8 +18,8 @@ User.create = function (newuser, result) {
         }
     });           
 };
-User.findById = function (id, result) {
-    dbConn.query("Select * from user where id = ? ", id, function (err, res) {             
+Structure.findById = function (id, result) {
+    dbConn.query("Select * from structure where id = ? ", id, function (err, res) {             
         if(err) {
             console.log("error: ", err);
             result(err, null);
@@ -32,8 +29,8 @@ User.findById = function (id, result) {
         }
     });   
 };
-User.findAll = function (result) {
-    dbConn.query("Select * from user", function (err, res) {
+Structure.findAll = function (result) {
+    dbConn.query("Select * from structure", function (err, res) {
         if(err) {
             console.log("error: ", err);
             result(null, err);
@@ -44,8 +41,8 @@ User.findAll = function (result) {
         }
     });   
 };
-User.update = function(id, user, result){
-  dbConn.query("UPDATE user SET firstname=?,lastname=?,email=?,statut=? WHERE id = ?", [user.firstname,user.lastname,user.email,user.statut, id], function (err, res) {
+Structure.update = function(id, structure, result){
+  dbConn.query("UPDATE structure SET nom=?,mail=? WHERE id = ?", [structure.nom,structure.mail, id], function (err, res) {
         if(err) {
             console.log("error: ", err);
             result(null, err);
@@ -54,8 +51,8 @@ User.update = function(id, user, result){
         }
     }); 
 };
-User.delete = function(id, result){
-     dbConn.query("DELETE FROM user WHERE id = ?", [id], function (err, res) {
+Structure.delete = function(id, result){
+     dbConn.query("DELETE FROM structure WHERE id = ?", [id], function (err, res) {
         if(err) {
             console.log("error: ", err);
             result(null, err);
@@ -66,4 +63,4 @@ User.delete = function(id, result){
     }); 
 };
 
-module.exports= User;
+module.exports= Structure;
