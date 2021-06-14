@@ -3,8 +3,8 @@ var dbConn = require('./../../config/db.config');
 
 //Structure object create
 var Structure = function(structure){
-    this.nom     = user.nom;
-    this.mail      = user.mail;
+    this.nom     = structure.nom;
+    this.mail      = structure.mail;
 };
 Structure.create = function (newstruct, result) {    
     dbConn.query("INSERT INTO structure set ?", newstruct, function (err, res) {
@@ -36,7 +36,7 @@ Structure.findAll = function (result) {
             result(null, err);
         }
         else{
-            console.log('user : ', res);  
+            console.log('structure : ', res);  
             result(null, res);
         }
     });   
